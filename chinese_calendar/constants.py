@@ -15,16 +15,16 @@ class Holiday(Enum):
         obj.days = days
         return obj
 
-    new_years_day = 'New Year\'s Day', '元旦', 1
-    spring_festival = 'Spring Festival', '春节', 3
-    tomb_sweeping_day = 'Tomb-sweeping Day', '清明', 1
-    labour_day = 'Labour Day', '劳动节', 1
-    dragon_boat_festival = 'Dragon Boat Festival', '端午', 1
-    national_day = 'National Day', '国庆节', 3
-    mid_autumn_festival = 'Mid-autumn Festival', '中秋', 1
+    new_years_day = "New Year's Day", "元旦", 1
+    spring_festival = "Spring Festival", "春节", 3
+    tomb_sweeping_day = "Tomb-sweeping Day", "清明", 1
+    labour_day = "Labour Day", "劳动节", 1
+    dragon_boat_festival = "Dragon Boat Festival", "端午", 1
+    national_day = "National Day", "国庆节", 3
+    mid_autumn_festival = "Mid-autumn Festival", "中秋", 1
 
     # special holidays
-    anti_fascist_70th_day = 'Anti-Fascist 70th Day', '中国人民抗日战争暨世界反法西斯战争胜利70周年纪念日', 1
+    anti_fascist_70th_day = "Anti-Fascist 70th Day", "中国人民抗日战争暨世界反法西斯战争胜利70周年纪念日", 1
 
 
 holidays = {
@@ -441,6 +441,9 @@ holidays = {
     datetime.date(year=2020, month=1, day=28): Holiday.spring_festival.value,
     datetime.date(year=2020, month=1, day=29): Holiday.spring_festival.value,
     datetime.date(year=2020, month=1, day=30): Holiday.spring_festival.value,
+    datetime.date(year=2020, month=1, day=31): Holiday.spring_festival.value,
+    datetime.date(year=2020, month=2, day=1): Holiday.spring_festival.value,
+    datetime.date(year=2020, month=2, day=2): Holiday.spring_festival.value,
     datetime.date(year=2020, month=4, day=4): Holiday.tomb_sweeping_day.value,
     datetime.date(year=2020, month=4, day=5): Holiday.tomb_sweeping_day.value,
     datetime.date(year=2020, month=4, day=6): Holiday.tomb_sweeping_day.value,
@@ -460,6 +463,37 @@ holidays = {
     datetime.date(year=2020, month=10, day=6): Holiday.national_day.value,
     datetime.date(year=2020, month=10, day=7): Holiday.national_day.value,
     datetime.date(year=2020, month=10, day=8): Holiday.national_day.value,
+    datetime.date(year=2021, month=1, day=1): Holiday.new_years_day.value,
+    datetime.date(year=2021, month=1, day=2): Holiday.new_years_day.value,
+    datetime.date(year=2021, month=1, day=3): Holiday.new_years_day.value,
+    datetime.date(year=2021, month=2, day=11): Holiday.spring_festival.value,
+    datetime.date(year=2021, month=2, day=12): Holiday.spring_festival.value,
+    datetime.date(year=2021, month=2, day=13): Holiday.spring_festival.value,
+    datetime.date(year=2021, month=2, day=14): Holiday.spring_festival.value,
+    datetime.date(year=2021, month=2, day=15): Holiday.spring_festival.value,
+    datetime.date(year=2021, month=2, day=16): Holiday.spring_festival.value,
+    datetime.date(year=2021, month=2, day=17): Holiday.spring_festival.value,
+    datetime.date(year=2021, month=4, day=3): Holiday.tomb_sweeping_day.value,
+    datetime.date(year=2021, month=4, day=4): Holiday.tomb_sweeping_day.value,
+    datetime.date(year=2021, month=4, day=5): Holiday.tomb_sweeping_day.value,
+    datetime.date(year=2021, month=5, day=1): Holiday.labour_day.value,
+    datetime.date(year=2021, month=5, day=2): Holiday.labour_day.value,
+    datetime.date(year=2021, month=5, day=3): Holiday.labour_day.value,
+    datetime.date(year=2021, month=5, day=4): Holiday.labour_day.value,
+    datetime.date(year=2021, month=5, day=5): Holiday.labour_day.value,
+    datetime.date(year=2021, month=6, day=12): Holiday.dragon_boat_festival.value,
+    datetime.date(year=2021, month=6, day=13): Holiday.dragon_boat_festival.value,
+    datetime.date(year=2021, month=6, day=14): Holiday.dragon_boat_festival.value,
+    datetime.date(year=2021, month=9, day=19): Holiday.mid_autumn_festival.value,
+    datetime.date(year=2021, month=9, day=20): Holiday.mid_autumn_festival.value,
+    datetime.date(year=2021, month=9, day=21): Holiday.mid_autumn_festival.value,
+    datetime.date(year=2021, month=10, day=1): Holiday.national_day.value,
+    datetime.date(year=2021, month=10, day=2): Holiday.national_day.value,
+    datetime.date(year=2021, month=10, day=3): Holiday.national_day.value,
+    datetime.date(year=2021, month=10, day=4): Holiday.national_day.value,
+    datetime.date(year=2021, month=10, day=5): Holiday.national_day.value,
+    datetime.date(year=2021, month=10, day=6): Holiday.national_day.value,
+    datetime.date(year=2021, month=10, day=7): Holiday.national_day.value,
 }
 
 workdays = {
@@ -565,12 +599,18 @@ workdays = {
     datetime.date(year=2019, month=9, day=29): Holiday.national_day.value,
     datetime.date(year=2019, month=10, day=12): Holiday.national_day.value,
     datetime.date(year=2020, month=1, day=19): Holiday.spring_festival.value,
-    datetime.date(year=2020, month=2, day=1): Holiday.spring_festival.value,
     datetime.date(year=2020, month=4, day=26): Holiday.labour_day.value,
     datetime.date(year=2020, month=5, day=9): Holiday.labour_day.value,
     datetime.date(year=2020, month=6, day=28): Holiday.dragon_boat_festival.value,
     datetime.date(year=2020, month=9, day=27): Holiday.national_day.value,
     datetime.date(year=2020, month=10, day=10): Holiday.national_day.value,
+    datetime.date(year=2021, month=2, day=7): Holiday.spring_festival.value,
+    datetime.date(year=2021, month=2, day=20): Holiday.spring_festival.value,
+    datetime.date(year=2021, month=4, day=25): Holiday.labour_day.value,
+    datetime.date(year=2021, month=5, day=8): Holiday.labour_day.value,
+    datetime.date(year=2021, month=9, day=18): Holiday.mid_autumn_festival.value,
+    datetime.date(year=2021, month=9, day=26): Holiday.national_day.value,
+    datetime.date(year=2021, month=10, day=9): Holiday.national_day.value,
 }
 
 in_lieu_days = {
@@ -677,10 +717,16 @@ in_lieu_days = {
     datetime.date(year=2019, month=10, day=4): Holiday.national_day.value,
     datetime.date(year=2019, month=10, day=7): Holiday.national_day.value,
     datetime.date(year=2020, month=1, day=29): Holiday.spring_festival.value,
-    datetime.date(year=2020, month=1, day=30): Holiday.spring_festival.value,
     datetime.date(year=2020, month=5, day=4): Holiday.labour_day.value,
     datetime.date(year=2020, month=5, day=5): Holiday.labour_day.value,
     datetime.date(year=2020, month=6, day=26): Holiday.dragon_boat_festival.value,
     datetime.date(year=2020, month=10, day=7): Holiday.national_day.value,
     datetime.date(year=2020, month=10, day=8): Holiday.national_day.value,
+    datetime.date(year=2021, month=2, day=16): Holiday.spring_festival.value,
+    datetime.date(year=2021, month=2, day=17): Holiday.spring_festival.value,
+    datetime.date(year=2021, month=5, day=4): Holiday.labour_day.value,
+    datetime.date(year=2021, month=5, day=5): Holiday.labour_day.value,
+    datetime.date(year=2021, month=9, day=20): Holiday.mid_autumn_festival.value,
+    datetime.date(year=2021, month=10, day=6): Holiday.national_day.value,
+    datetime.date(year=2021, month=10, day=7): Holiday.national_day.value,
 }

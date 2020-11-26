@@ -22,16 +22,16 @@ class Holiday(Enum):
         obj.days = days
         return obj
 
-    new_years_day = 'New Year\\'s Day', '元旦', 1
-    spring_festival = 'Spring Festival', '春节', 3
-    tomb_sweeping_day = 'Tomb-sweeping Day', '清明', 1
-    labour_day = 'Labour Day', '劳动节', 1
-    dragon_boat_festival = 'Dragon Boat Festival', '端午', 1
-    national_day = 'National Day', '国庆节', 3
-    mid_autumn_festival = 'Mid-autumn Festival', '中秋', 1
+    new_years_day = "New Year's Day", "元旦", 1
+    spring_festival = "Spring Festival", "春节", 3
+    tomb_sweeping_day = "Tomb-sweeping Day", "清明", 1
+    labour_day = "Labour Day", "劳动节", 1
+    dragon_boat_festival = "Dragon Boat Festival", "端午", 1
+    national_day = "National Day", "国庆节", 3
+    mid_autumn_festival = "Mid-autumn Festival", "中秋", 1
 
     # special holidays
-    anti_fascist_70th_day = 'Anti-Fascist 70th Day', '中国人民抗日战争暨世界反法西斯战争胜利70周年纪念日', 1
+    anti_fascist_70th_day = "Anti-Fascist 70th Day", "中国人民抗日战争暨世界反法西斯战争胜利70周年纪念日", 1
 
 
 holidays = {}
@@ -65,6 +65,26 @@ class Arrangement(object):
             except ValueError:
                 pass
 
+    # fmt: off
+    def _2021(self):
+        """ http://www.gov.cn/zhengce/content/2020-11/25/content_5564127.htm
+        一、元旦：2021年1月1日至3日放假，共3天。
+        二、春节：2月11日至17日放假调休，共7天。2月7日（星期日）、2月20日（星期六）上班。
+        三、清明节：4月3日至5日放假调休，共3天。
+        四、劳动节：5月1日至5日放假调休，共5天。4月25日（星期日）、5月8日（星期六）上班。
+        五、端午节：6月12日至14日放假，共3天。
+        六、中秋节：9月19日至21日放假调休，共3天。9月18日（星期六）上班。
+        七、国庆节：10月1日至7日放假调休，共7天。9月26日（星期日）、10月9日（星期六）上班。
+        """
+        self.year_at(2021) \
+            .nyd().rest(1, 1).to(1, 3) \
+            .sf().rest(2, 11).to(2, 17).work(2, 7).work(2, 20).in_lieu(2, 16).to(2, 17) \
+            .tsd().rest(4, 3).to(4, 5) \
+            .ld().rest(5, 1).to(5, 5).work(4, 25).work(5, 8).in_lieu(5, 4).to(5, 5) \
+            .dbf().rest(6, 12).to(6, 14) \
+            .maf().rest(9, 19).to(9, 21).work(9, 18).in_lieu(9, 20) \
+            .nd().rest(10, 1).to(10, 7).work(9, 26).work(10, 9).in_lieu(10, 6).to(10, 7)
+
     def _2020(self):
         """ http://www.gov.cn/zhengce/content/2019-11/21/content_5454164.htm
         一、元旦：2020年1月1日放假，共1天。
@@ -73,10 +93,13 @@ class Arrangement(object):
         四、劳动节：5月1日至5日放假调休，共5天。4月26日（星期日）、5月9日（星期六）上班。
         五、端午节：6月25日至27日放假调休，共3天。6月28日（星期日）上班。
         六、国庆节、中秋节：10月1日至8日放假调休，共8天。9月27日（星期日）、10月10日（星期六）上班。
+
+        http://www.gov.cn/zhengce/content/2020-01/27/content_5472352.htm
+        延长2020年春节假期至2月2日（农历正月初九，星期日），2月3日（星期一）起正常上班。
         """
         self.year_at(2020) \
             .nyd().rest(1, 1) \
-            .sf().rest(1, 24).to(1, 30).work(1, 19).work(2, 1).in_lieu(1, 29).to(1, 30) \
+            .sf().rest(1, 24).to(2, 2).work(1, 19).in_lieu(1, 29) \
             .tsd().rest(4, 4).to(4, 6) \
             .ld().rest(5, 1).to(5, 5).work(4, 26).work(5, 9).in_lieu(5, 4).to(5, 5) \
             .dbf().rest(6, 25).to(6, 27).work(6, 28).in_lieu(6, 26) \
@@ -434,6 +457,7 @@ class Arrangement(object):
     # 2003: https://zh.wikisource.org/zh-hans/国务院办公厅关于2003年部分节假日休息安排的通知
     # 2002: https://zh.wikisource.org/zh-hans/国务院办公厅关于2002年部分节假日休息安排的通知
     # 2001: https://zh.wikisource.org/zh-hans/国务院办公厅关于2001年春节、“五一”、“十一”放假安排的通知
+    # fmt: on
 
     def year_at(self, number):
         self.year = number
@@ -487,9 +511,9 @@ class Arrangement(object):
 
     def save(self, month, day, day_type):
         if not self.year:
-            raise ValueError('should set year before saving holiday')
+            raise ValueError("should set year before saving holiday")
         if not self.holiday:
-            raise ValueError('should set holiday before saving holiday')
+            raise ValueError("should set holiday before saving holiday")
         self.day_type = day_type
         self.days[datetime.date(year=self.year, month=month, day=day)] = self.holiday
         self.month = month
@@ -498,11 +522,11 @@ class Arrangement(object):
 
     def to(self, month, day):
         if not (self.year and self.month and self.day):
-            raise ValueError('should set year/month/day before saving holiday range')
+            raise ValueError("should set year/month/day before saving holiday range")
         start_date = datetime.date(year=self.year, month=self.month, day=self.day)
         end_date = datetime.date(year=self.year, month=month, day=day)
         if end_date <= start_date:
-            raise ValueError('end date should be after start date')
+            raise ValueError("end date should be after start date")
         for i in range((end_date - start_date).days):
             the_date = start_date + datetime.timedelta(days=i + 1)
             self.days[the_date] = self.holiday
@@ -510,8 +534,5 @@ class Arrangement(object):
 
     @property
     def days(self):
-        return {
-            self.HOLIDAY: self.holidays,
-            self.IN_LIEU: self.in_lieu_days,
-            self.WORKDAY: self.workdays,
-        }[self.day_type]
+        mapping = {self.HOLIDAY: self.holidays, self.IN_LIEU: self.in_lieu_days, self.WORKDAY: self.workdays}
+        return mapping[self.day_type]
